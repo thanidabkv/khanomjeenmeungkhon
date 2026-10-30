@@ -9,7 +9,7 @@
   <meta property="og:description" content="Southern Thai khanom jeen with five nam ya, in Nakhon Si Thammarat since 1977.">
   <meta property="og:image" content="assets/img/five-pots.jpg">
   <meta name="theme-color" content="#010001">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@600;700&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
   <header class="nav" id="top-nav">
     <div class="nav__inner">
       <a class="logo" href="#top" aria-label="ขนมจีนเมืองคอน, back to top">
-        <img src="assets/logo-mark.svg" alt="" width="44" height="42">
+        <img src="assets/logo-mark.png" alt="" width="46" height="40">
         <span class="logo__text">
           <span class="logo__name">ขนมจีนเมืองคอน</span>
           <span class="logo__sub">ถนนพานยม · EST. 1977</span>
@@ -29,6 +29,7 @@
       </a>
       <nav class="nav__links" id="nav-links" aria-label="Main">
         <a href="#story">Story</a>
+        <a href="#city">City</a>
         <a href="#nam-ya">Nam Ya</a>
         <a href="#menu">Menu</a>
         <a href="#how-to-eat">How to Eat</a>
@@ -37,7 +38,15 @@
       </nav>
       <div class="nav__right">
         <span class="status" id="open-status" aria-live="polite"></span>
-        <a class="btn btn--primary btn--sm" href="https://www.google.com/maps/search/?api=1&query=%E0%B8%82%E0%B8%99%E0%B8%A1%E0%B8%88%E0%B8%B5%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B8%99+%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%A2%E0%B8%A1" target="_blank" rel="noopener">Get directions →</a>
+        <button class="iconbtn" id="sound-toggle" aria-pressed="false" aria-label="Turn on temple-bell sound" title="Sound">
+          <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+          <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
+        </button>
+        <button class="iconbtn" id="fav-open" aria-label="Open favorites" title="Favorites" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <span class="badge-count" id="fav-count" hidden>0</span>
+        </button>
+        <a class="btn btn--primary btn--sm nav__cta" href="https://www.google.com/maps/search/?api=1&query=%E0%B8%82%E0%B8%99%E0%B8%A1%E0%B8%88%E0%B8%B5%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B8%99+%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%A2%E0%B8%A1" target="_blank" rel="noopener">Get directions →</a>
         <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
           <span></span><span></span><span></span>
         </button>
@@ -49,17 +58,19 @@
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top">
-      <img class="hero__img" src="assets/img/hero-curries.jpg" alt="Bowls of Southern Thai nam ya curries with crispy pork, seen from above">
+      <div class="hero__media">
+        <img class="hero__img" src="assets/img/hero-curries.jpg" alt="Bowls of Southern Thai nam ya curries with crispy pork, seen from above">
+        <div class="steam" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      </div>
       <div class="hero__fade"></div>
       <div class="container hero__copy reveal">
         <p class="eyebrow">Southern Thai khanom jeen · since 1977</p>
-        <img class="hero__mark" src="assets/logo-mark.svg" alt="" width="76" height="73">
-        <h1 class="display">ขนมจีน<br>เมืองคอน</h1>
-        <p class="hero__street">ถนนพานยม</p>
+        <img class="hero__logo" src="assets/logo-full-white.png" alt="ขนมจีนเมืองคอน ถนนพานยม" width="360" height="234">
+        <h1 class="sr-only">ขนมจีนเมืองคอน ถนนพานยม</h1>
         <p class="hero__lede">A legend that so many long to taste. The original, secret-recipe dishes of Mueang Khon, cooked from the heart, the Southern way.</p>
         <div class="actions">
           <a class="btn btn--primary" href="#menu">View the menu →</a>
-          <a class="btn btn--outline" href="#visit">Get directions</a>
+          <a class="btn btn--outline" href="#nam-ya">Meet the five curries</a>
         </div>
         <dl class="infostrip">
           <div><dt>Open daily</dt><dd>08:00 – 15:00</dd></div>
@@ -67,6 +78,7 @@
           <div><dt>Call</dt><dd><a href="tel:+6675342615">075-342-615</a></dd></div>
         </dl>
       </div>
+      <a class="scrollcue" href="#story" aria-label="Scroll to story"><span>Scroll</span><i></i></a>
     </section>
 
     <!-- STORY -->
@@ -78,10 +90,27 @@
           <p class="body-l">ร้านขนมจีนเมืองคอน ถนนพานยม ต้นตำรับขนมจีนน้ำยาปักษ์ใต้สูตรชาววังจากต้นตระกูล ณ นคร จากวันนั้นถึงวันนี้ รสชาติเข้มข้นจัดจ้านยังคงโด่งดังเลื่องลือ มีลูกค้าทั้งในประเทศและต่างประเทศแวะเวียนมาไม่ขาดสายตลอดทั้งปี</p>
           <p class="muted">Since 1977 our family has served Southern-style khanom jeen from a recipe handed down through the Na Nakhon family. The flavours are as rich and fiery as they were on day one, and guests from all over Thailand and abroad still stop by all year round.</p>
         </div>
-        <figure class="reveal">
-          <img class="photo" src="assets/img/buffet.jpg" alt="The restaurant's original curry counter with trays of dishes" loading="lazy">
-          <figcaption>The counter on Thanon Phanyom, where it all began.</figcaption>
-        </figure>
+
+        <!-- Timeline scrubber -->
+        <div class="timeline reveal" id="timeline">
+          <div class="timeline__frames">
+            <figure class="timeline__frame is-active" data-step="0">
+              <img src="assets/img/buffet.jpg" alt="The restaurant's original curry counter with trays of dishes" loading="lazy">
+              <figcaption><b>พ.ศ. 2520 · 1977</b> The first pots go on at the counter on Thanon Phanyom.</figcaption>
+            </figure>
+            <figure class="timeline__frame" data-step="1">
+              <img src="assets/img/five-pots.jpg" alt="Khanom jeen noodles surrounded by five bowls of nam ya" loading="lazy">
+              <figcaption><b>รุ่นสู่รุ่น · Generation to generation</b> The Na Nakhon family recipes are passed down, unchanged.</figcaption>
+            </figure>
+            <figure class="timeline__frame" data-step="2">
+              <img src="assets/img/curries-basket.jpg" alt="A basket of khanom jeen noodles next to bowls of curry" loading="lazy">
+              <figcaption><b>วันนี้ · Today</b> Still cooked from the heart, every morning, for locals and travellers.</figcaption>
+            </figure>
+          </div>
+          <label class="timeline__label" for="timeline-range">Drag through the years</label>
+          <input class="timeline__range" id="timeline-range" type="range" min="0" max="2" step="1" value="0" aria-valuetext="1977">
+          <div class="timeline__ticks" aria-hidden="true"><span>1977</span><span>รุ่นสู่รุ่น</span><span>Today</span></div>
+        </div>
       </div>
       <div class="container pillars">
         <article class="pillar reveal">
@@ -102,22 +131,96 @@
       </div>
     </section>
 
-    <!-- NAM YA -->
+    <!-- CITY (parallax + walking pin) -->
+    <section class="city" id="city">
+      <div class="city__parallax" aria-hidden="true">
+        <img class="city__layer city__layer--far" src="assets/img/temple-wikimedia.jpg" alt="">
+      </div>
+      <div class="city__band container reveal">
+        <p class="eyebrow eyebrow--light">The City · เมืองคอน</p>
+        <h2 class="h1">Mueang Khon doesn’t hurry you.</h2>
+        <p class="body-l">Mornings begin near Wat Phra Mahathat, the temple that anchors the old city, and the streets fan out toward the markets. Ten minutes on foot from the temple, on Thanon Phanyom, a pot is already simmering.</p>
+        <button class="chip" data-sound-toggle aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+          <span>Play the temple bell</span>
+        </button>
+      </div>
+      <div class="city__walk container">
+        <div class="routecard reveal" id="route">
+          <svg class="routemap" viewBox="0 0 640 360" role="img" aria-labelledby="route-title">
+            <title id="route-title">Walking route from Wat Phra Mahathat to Thanon Phanyom, about ten minutes</title>
+            <g class="routemap__roads">
+              <path d="M-10 90 L650 120"/><path d="M-10 270 L650 240"/><path d="M150 -10 L190 370"/><path d="M470 -10 L440 370"/><path d="M-10 180 L650 175"/>
+            </g>
+            <path id="route-path" class="routemap__path" d="M120 300 C 180 230, 230 210, 300 190 S 430 140, 520 70"/>
+            <g class="routemap__temple" transform="translate(96 268)">
+              <path d="M24 0 L30 26 L18 26 Z"/><rect x="10" y="26" width="28" height="18" rx="2"/>
+            </g>
+            <text x="70" y="338" class="routemap__label">วัดพระมหาธาตุฯ · Wat Phra Mahathat</text>
+            <g class="routemap__shop" transform="translate(520 70)">
+              <circle r="12"/><circle r="5" class="routemap__dot"/>
+            </g>
+            <text x="400" y="40" class="routemap__label">ขนมจีนเมืองคอน · Thanon Phanyom</text>
+            <g id="walker" class="routemap__walker">
+              <path d="M0 -30C-8.3 -30 -15 -23.5 -15 -15.4 -15 -4.5 0 7.5 0 7.5S15 -4.5 15 -15.4C15 -23.5 8.3 -30 0 -30Z"/>
+              <circle cy="-15.5" r="5.5" class="routemap__walker-dot"/>
+            </g>
+          </svg>
+          <p class="routecard__note"><span id="walk-mins">0</span> / 10 min walk · keep scrolling to walk there</p>
+        </div>
+        <figure class="reveal">
+          <img class="photo" src="assets/img/chedi-pigeons.jpg" alt="The white and gold chedi of Wat Phra Mahathat with pigeons in flight" loading="lazy">
+          <figcaption>Phra Borommathat Chedi, Wat Phra Mahathat. Photo: Pthawatc, CC BY-SA 4.0</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- NAM YA infographic -->
     <section class="section" id="nam-ya">
       <div class="container">
         <div class="reveal">
           <p class="eyebrow">The five nam ya · น้ำยา 5 อย่าง</p>
           <h2 class="h1">Five curries, one noodle.</h2>
-          <p class="muted narrow">Soft, fermented rice noodles are only the start. The real subject is the sauce: in the South it is called nam ya, and here there are five.</p>
+          <p class="muted narrow">Soft, fermented rice noodles are only the start. The real subject is the sauce: in the South it is called nam ya, and here there are five. Hover or tap a bowl.</p>
         </div>
-        <img class="photo photo--wide reveal" src="assets/img/five-pots.jpg" alt="A woven tray of khanom jeen noodles surrounded by five bowls of nam ya" loading="lazy">
-        <ul class="namya">
-          <li class="reveal"><h3>น้ำยากะทิ</h3><p class="accent">Coconut milk</p><p>Mellow and creamy, the gentle way in.</p></li>
-          <li class="reveal"><h3>น้ำยาป่า</h3><p class="accent">Jungle</p><p>Bright and fiery, made without coconut milk.</p></li>
-          <li class="reveal"><h3>น้ำพริก</h3><p class="accent">Chili</p><p>Sweet, nutty and heat-forward.</p></li>
-          <li class="reveal"><h3>แกงไตปลา</h3><p class="accent">Fish innards</p><p>The bold, unapologetic Southern classic.</p></li>
-          <li class="reveal"><h3>น้ำยาปู</h3><p class="accent">Crab</p><p>Rich and sweet from the sea.</p></li>
-        </ul>
+
+        <div class="pots" role="tablist" aria-label="Choose a nam ya">
+          <button class="pot" role="tab" data-pot="0" aria-selected="true"><span class="pot__bowl" style="--c:#e3c065"><i></i></span><b>น้ำยากะทิ</b><small>Coconut milk</small></button>
+          <button class="pot" role="tab" data-pot="1" aria-selected="false"><span class="pot__bowl" style="--c:#c8772f"><i></i></span><b>น้ำยาป่า</b><small>Jungle</small></button>
+          <button class="pot" role="tab" data-pot="2" aria-selected="false"><span class="pot__bowl" style="--c:#b8442a"><i></i></span><b>น้ำพริก</b><small>Chili</small></button>
+          <button class="pot" role="tab" data-pot="3" aria-selected="false"><span class="pot__bowl" style="--c:#9a6a2e"><i></i></span><b>แกงไตปลา</b><small>Fish innards</small></button>
+          <button class="pot" role="tab" data-pot="4" aria-selected="false"><span class="pot__bowl" style="--c:#d9893c"><i></i></span><b>น้ำยาปู</b><small>Crab</small></button>
+        </div>
+
+        <div class="potpanel" id="pot-panel" role="tabpanel" aria-live="polite">
+          <div class="potpanel__info">
+            <h3 class="potpanel__th" id="pot-th">น้ำยากะทิ</h3>
+            <p class="accent" id="pot-en">Coconut milk nam ya</p>
+            <p class="tag" id="pot-tag">Good for first-timers</p>
+            <p class="muted" id="pot-desc">Mellow and creamy, the gentle way in.</p>
+            <div class="meters">
+              <div class="meter"><span>Heat</span><span class="meter__bar" id="pot-heat" style="--v:1"></span></div>
+              <div class="meter"><span>Richness</span><span class="meter__bar" id="pot-rich" style="--v:4"></span></div>
+            </div>
+            <div class="potpanel__actions">
+              <button class="btn btn--outline btn--sm savebtn" id="pot-save" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                <span>Save</span>
+              </button>
+              <label class="switch"><input type="checkbox" id="build-toggle"><span class="switch__track"></span>Build your bowl</label>
+            </div>
+          </div>
+          <div class="buildbowl" id="build-bowl" aria-hidden="true">
+            <svg viewBox="0 0 300 220">
+              <ellipse class="bb__plate" cx="150" cy="150" rx="140" ry="58"/>
+              <g class="bb__noodles"><ellipse cx="150" cy="136" rx="92" ry="34"/><path d="M80 134c20-12 40 10 60 0s40-14 60 0 26 6 20 4M86 146c22-10 44 8 66-2s40-10 58 2"/></g>
+              <ellipse class="bb__curry" id="bb-curry" cx="150" cy="128" rx="78" ry="26"/>
+              <g class="bb__veg"><path d="M70 110c18-30 50-26 56-8-20 4-36 10-56 8Z"/><path d="M200 100c22-18 52-6 50 14-18-6-34-8-50-14Z"/><path d="M128 92c6-22 30-28 40-10-14 2-26 6-40 10Z"/></g>
+            </svg>
+            <ol class="bb__steps"><li>ขนมจีน · noodles</li><li>น้ำยา · curry</li><li>ผักเหนาะ · fresh veg</li></ol>
+          </div>
+        </div>
+        <p class="note">Heat and richness are a rough guide. Ask at the counter if you’re unsure.</p>
       </div>
     </section>
 
@@ -181,7 +284,8 @@
         <div class="panel" role="tabpanel" id="panel-desserts" aria-labelledby="tab-desserts" hidden>
           <ul class="prices">
             <li><span class="item">ขนมกวนขาว<small>coconut cream pudding · signature</small></span><span class="price">30.-</span></li>
-            <li><span class="item">ขนมรวมมิตร<small>Thai mixed dessert in coconut milk</small></span><span class="price">30.-</span></li>          </ul>
+            <li><span class="item">ขนมรวมมิตร<small>Thai mixed dessert in coconut milk</small></span><span class="price">30.-</span></li>
+          </ul>
           <div class="cards cards--2">
             <figure><img src="assets/img/kuankao.jpg" alt="ขนมกวนขาว coconut cream pudding with toasted mung beans" loading="lazy"><figcaption>ขนมกวนขาว</figcaption></figure>
             <figure><img src="assets/img/ruammit.jpg" alt="ขนมรวมมิตร mixed dessert in coconut milk" loading="lazy"><figcaption>ขนมรวมมิตร</figcaption></figure>
@@ -192,7 +296,7 @@
       </div>
     </section>
 
-    <!-- HOW TO EAT -->
+    <!-- HOW TO EAT + pairing guide -->
     <section class="section section--brown" id="how-to-eat">
       <div class="container grid-2 grid-2--center">
         <img class="photo reveal" src="assets/img/veg-table.jpg" alt="The table of fresh vegetables, herbs and nam ya bowls" loading="lazy">
@@ -207,12 +311,36 @@
           </ol>
         </div>
       </div>
+
+      <figure class="container paknor reveal">
+        <img src="assets/img/pak-nor.jpg" alt="A grid of Southern Thai fresh vegetables and herbs eaten with khanom jeen" loading="lazy">
+        <figcaption>ผักเหนาะ: the fresh vegetables and herbs of the South. Photo: Supisara.plus, CC BY-SA 4.0</figcaption>
+      </figure>
+
+      <div class="container pairing reveal" id="pairing">
+        <div>
+          <p class="eyebrow eyebrow--light">Tap to taste · จับคู่ของทอด</p>
+          <h3 class="h3">Which nam ya goes with which side?</h3>
+          <div class="sides" role="group" aria-label="Side dishes">
+            <button class="side" data-side="0" aria-pressed="false"><img src="assets/img/friedchicken.jpg" alt=""><span>ไก่ทอด</span></button>
+            <button class="side" data-side="1" aria-pressed="false"><img src="assets/img/porkbelly.jpg" alt=""><span>หมูกรอบ</span></button>
+            <button class="side" data-side="2" aria-pressed="false"><img src="assets/img/chickenskin.jpg" alt=""><span>หนังไก่กรอบ</span></button>
+            <button class="side" data-side="3" aria-pressed="false"><img src="assets/img/todmun.jpg" alt=""><span>ทอดมันกุ้ง</span></button>
+          </div>
+        </div>
+        <div>
+          <p class="pairing__hint" id="pair-hint" aria-live="polite">Tap a side dish to see its best match.</p>
+          <ul class="matches" id="matches">
+            <li data-m="0">น้ำยากะทิ</li><li data-m="1">น้ำยาป่า</li><li data-m="2">น้ำพริก</li><li data-m="3">แกงไตปลา</li><li data-m="4">น้ำยาปู</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- DESSERT -->
-    <section class="section" id="dessert">
+    <!-- DESSERT (slow reveal) -->
+    <section class="section dessert" id="dessert">
       <div class="container grid-2 grid-2--center">
-        <div class="reveal">
+        <div class="slow-reveal">
           <p class="eyebrow">Dessert · ของหวาน</p>
           <h2 class="display display--md">กวนขาว</h2>
           <p class="accent">Southern Thai Coconut Rice Pudding</p>
@@ -220,21 +348,10 @@
           <p class="muted">A rare, heritage dessert: melt-in-your-mouth rice pudding with a rich, savory salted coconut cream, topped with crunchy toasted mung beans. Few places still make it, so eat it while you can.</p>
           <p class="bigprice">30.- <small>also try ขนมรวมมิตร, 30.-</small></p>
         </div>
-        <figure class="dessert__fig reveal">
+        <figure class="dessert__fig slow-reveal">
           <span class="badge">★ Signature dessert</span>
           <img class="photo" src="assets/img/kuankao.jpg" alt="ขนมกวนขาว in a white bowl with toasted mung beans" loading="lazy">
         </figure>
-      </div>
-    </section>
-
-    <!-- HERITAGE -->
-    <section class="heritage">
-      <img src="assets/img/temple.jpg" alt="Crowds and orange cloth outside Wat Phra Mahathat during a festival" loading="lazy">
-      <div class="heritage__copy container reveal">
-        <p class="eyebrow eyebrow--light">Mueang Khon · เมืองคอน</p>
-        <h2 class="h1">Ten minutes from Wat Phra Mahathat</h2>
-        <p class="body-l">ห่างจากวัดพระมหาธาตุวรมหาวิหารเพียงเดินไม่กี่นาที</p>
-        <p class="muted">Make a morning of it: visit the temple that anchors the old city, then walk over to Thanon Phanyom for the South’s most generous breakfast.</p>
       </div>
     </section>
 
@@ -266,19 +383,54 @@
   <footer class="footer">
     <div class="container footer__grid">
       <div>
-        <a class="logo" href="#top"><img src="assets/logo-mark.svg" alt="" width="44" height="42"><span class="logo__text"><span class="logo__name">ขนมจีนเมืองคอน</span><span class="logo__sub">ถนนพานยม · EST. 1977</span></span></a>
-        <p class="accent">เพราะเราปรุงด้วยใจ ปักษ์ใต้บ้านเรา…</p>
+        <img class="footer__logo" src="assets/logo-full-white.png" alt="ขนมจีนเมืองคอน ถนนพานยม" width="200" height="130">
+        <p class="accent">เพราะเราปรุงด้วยใจ<br>ปักษ์ใต้บ้านเรา…</p>
         <p class="muted">Because we cook from the heart, the Southern way.</p>
       </div>
-      <div><h4>Explore</h4><a href="#story">Story</a><a href="#nam-ya">Nam Ya</a><a href="#menu">Menu</a><a href="#dessert">Desserts</a></div>
+      <div><h4>Explore</h4><a href="#story">Story</a><a href="#city">City</a><a href="#nam-ya">Nam Ya</a><a href="#menu">Menu</a><a href="#dessert">Desserts</a></div>
       <div><h4>Visit</h4><p>เปิดทุกวัน 08:00 – 15:00</p><p>ถนนพานยม, นครศรีธรรมราช</p><p><a href="tel:+6675342615">075-342-615</a></p></div>
       <div><h4>Follow</h4><p>Facebook</p><p>Google Reviews</p></div>
+    </div>
+    <div class="container credits">
+      <h4>Photo credits</h4>
+      <p>Food and restaurant photos: ขนมจีนเมืองคอน ถนนพานยม.
+        Wat Phra Mahathat: <a href="https://commons.wikimedia.org/wiki/File:Wat_Phra_Mahathat_Woramahawihan,_Nakhon_Si_Thammarat.jpg" target="_blank" rel="noopener">Preecha.MJ</a>,
+        chedi with pigeons: <a href="https://commons.wikimedia.org/wiki/File:%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%95%E0%B8%B8%E0%B8%A2%E0%B8%AD%E0%B8%94%E0%B8%97%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%A8%E0%B8%A3%E0%B8%B5.jpg" target="_blank" rel="noopener">Pthawatc</a>,
+        ผักเหนาะ: <a href="https://commons.wikimedia.org/wiki/File:Kanom_Chin_vegetables.jpg" target="_blank" rel="noopener">Supisara.plus</a>,
+        all via Wikimedia Commons under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</p>
     </div>
     <div class="container footer__bottom">
       <p>© <span id="year">2026</span> ขนมจีนเมืองคอน ถนนพานยม · Website concept by Thanida Boonkangvan</p>
       <a href="#top" class="totop">↑ Back to top</a>
     </div>
   </footer>
+
+  <!-- Favorites drawer -->
+  <div class="drawer" id="fav-drawer" role="dialog" aria-modal="true" aria-labelledby="fav-title" hidden>
+    <div class="drawer__scrim" data-close></div>
+    <aside class="drawer__panel">
+      <div class="drawer__head">
+        <h2 class="h3" id="fav-title">Your favorites <span id="fav-title-count"></span></h2>
+        <button class="iconbtn" data-close aria-label="Close favorites"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <ul class="favlist" id="fav-list"></ul>
+      <div class="favempty" id="fav-empty">
+        <p><b>Nothing saved yet.</b></p>
+        <p class="muted">Head back to the story and tap the heart on a curry you’d like to try.</p>
+        <a class="btn btn--primary btn--sm" href="#nam-ya" data-close>Meet the five curries</a>
+      </div>
+      <div class="drawer__visit">
+        <h3>Plan your visit</h3>
+        <p>Open daily 08:00 – 15:00 · Thanon Phanyom</p>
+        <div class="actions">
+          <a class="btn btn--primary btn--sm" href="https://www.google.com/maps/search/?api=1&query=%E0%B8%82%E0%B8%99%E0%B8%A1%E0%B8%88%E0%B8%B5%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B8%99+%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%A2%E0%B8%A1" target="_blank" rel="noopener">Open in Maps</a>
+          <a class="btn btn--outline btn--sm" href="tel:+6675342615">Call</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="script.js" defer></script>
 </body>
