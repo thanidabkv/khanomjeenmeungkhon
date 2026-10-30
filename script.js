@@ -163,15 +163,19 @@ range.addEventListener("input", () => {
 
 // ---------- Five pots infographic ----------
 const POTS = [
-  { th: "น้ำยากะทิ", en: "Coconut milk", color: "#e3c065", heat: 1, rich: 4, tag: "Good for first-timers", desc: "Mellow and creamy, the gentle way in." },
-  { th: "น้ำยาป่า", en: "Jungle", color: "#c8772f", heat: 5, rich: 1, tag: "", desc: "Bright and fiery, made without coconut milk." },
-  { th: "น้ำพริก", en: "Chili", color: "#b8442a", heat: 3, rich: 3, tag: "", desc: "Sweet, nutty and heat-forward." },
-  { th: "แกงไตปลา", en: "Fish innards", color: "#9a6a2e", heat: 4, rich: 5, tag: "Southern classic", desc: "The bold, unapologetic Southern classic." },
-  { th: "น้ำยาปู", en: "Crab", color: "#d9893c", heat: 2, rich: 4, tag: "", desc: "Rich and sweet from the sea." },
+  { th: "น้ำยากะทิ", en: "Coconut milk", color: "#e3c065", heat: 2, rich: 4, tag: "Good for first-timers", desc: "Mellow and creamy, the gentle way in.",
+    side: { name: "ทอดมันกุ้งใบเล็บครุฑ", img: "todmun", price: "60.-", unit: "/ ชุด", why: "Crisp shrimp fritters to dip into the creamy coconut curry." } },
+  { th: "น้ำยาป่า", en: "Jungle", color: "#c8772f", heat: 5, rich: 1, tag: "Hottest", desc: "Bright and fiery, made without coconut milk.",
+    side: { name: "หมูกรอบ", img: "porkbelly", price: "70.-", unit: "/ ชิ้น", why: "Rich crispy pork belly balances the fire." } },
+  { th: "น้ำพริก", en: "Chili", color: "#b8442a", heat: 1, rich: 3, tag: "Mildest", desc: "Sweet and nutty, despite the name, the mildest of the five.",
+    side: { name: "ปีกไก่ทอด", img: "friedchicken", price: "60.-", unit: "/ ชุด", why: "Fried chicken wings and a sweet sauce, an easy favourite." } },
+  { th: "แกงไตปลา", en: "Fish innards", color: "#9a6a2e", heat: 4, rich: 5, tag: "Southern classic", desc: "The bold, unapologetic Southern classic.",
+    side: { name: "ปลาดุกทอดขมิ้น", img: "", price: "70.-", unit: "/ ตัว", why: "Turmeric-fried catfish, the Southern way to eat ไตปลา." } },
+  { th: "น้ำยาปู", en: "Crab", color: "#d9893c", heat: 2, rich: 4, tag: "", desc: "Rich and sweet from the sea.",
+    side: { name: "ไข่พะโล้", img: "", price: "70.-", unit: "/ ถ้วย", why: "Soft five-spice braised eggs alongside the sweet crab curry." } },
 ];
 const potButtons = $$(".pot");
 const buildBowl = $("#build-bowl");
-const saveBtn = $("#pot-save");
 let currentPot = 0;
 
 function selectPot(i, { focus = false } = {}) {
@@ -191,120 +195,37 @@ function selectPot(i, { focus = false } = {}) {
   $("#pot-heat").style.setProperty("--v", pot.heat);
   $("#pot-rich").style.setProperty("--v", pot.rich);
   buildBowl.style.setProperty("--curry", pot.color);
-  syncSaveButton();
+  // replay the noodles → curry → veg build every time a curry is picked
+  buildBowl.classList.remove("is-built");
+  void buildBowl.offsetWidth;
+  buildBowl.classList.add("is-built");
+
+  const side = pot.side;
+  const img = $("#best-img");
+  img.hidden = !side.img;
+  if (side.img) { img.src = `assets/img/${side.img}.jpg`; img.alt = side.name; }
+  $("#best-name").textContent = side.name;
+  $("#best-why").textContent = side.why;
+  $("#best-price").textContent = side.price;
+  $("#best-unit").textContent = side.unit;
+  const card = $("#best-side");
+  card.classList.remove("pop");
+  void card.offsetWidth;
+  card.classList.add("pop");
 }
 
 potButtons.forEach((b, i) => {
   b.addEventListener("click", () => selectPot(i));
-  b.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") selectPot(i); });
   b.addEventListener("keydown", (e) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
     selectPot((i + (e.key === "ArrowRight" ? 1 : POTS.length - 1)) % POTS.length, { focus: true });
   });
 });
 
-$("#build-toggle").addEventListener("change", (e) => {
-  buildBowl.classList.toggle("is-built", e.target.checked);
-  buildBowl.setAttribute("aria-hidden", String(!e.target.checked));
-});
-
-// ---------- Favorites (saved in this browser) ----------
-const FAV_KEY = "kjmk-favorites";
-function loadFavs() {
-  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch { return []; }
-}
-function storeFavs(list) {
-  try { localStorage.setItem(FAV_KEY, JSON.stringify(list)); } catch { /* storage unavailable: keep in memory */ }
-}
-let favs = loadFavs().filter((i) => POTS[i]);
-
-const toastEl = $("#toast");
-let toastTimer;
-function toast(msg) {
-  toastEl.textContent = msg;
-  toastEl.classList.add("is-shown");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove("is-shown"), 2200);
-}
-
-function syncSaveButton() {
-  const saved = favs.includes(currentPot);
-  saveBtn.setAttribute("aria-pressed", String(saved));
-  $("span", saveBtn).textContent = saved ? "Saved" : "Save";
-}
-
-function renderFavs() {
-  const count = $("#fav-count");
-  count.textContent = favs.length;
-  count.hidden = favs.length === 0;
-  $("#fav-open").classList.toggle("has-favs", favs.length > 0);
-  $("#fav-title-count").textContent = favs.length ? `(${favs.length} saved)` : "";
-  const list = $("#fav-list");
-  list.innerHTML = "";
-  for (const i of favs) {
-    const pot = POTS[i];
-    const li = document.createElement("li");
-    li.innerHTML = `<span class="dot" style="--c:${pot.color}"></span>
-      <span class="favname"><b>${pot.th}</b><small>${pot.en} nam ya</small><a href="#nam-ya" data-jump="${i}">Jump to this bowl →</a></span>
-      <button aria-label="Remove ${pot.en} from favorites" data-remove="${i}">♥</button>`;
-    list.appendChild(li);
-  }
-  $("#fav-empty").hidden = favs.length > 0;
-  syncSaveButton();
-}
-
-saveBtn.addEventListener("click", () => {
-  if (favs.includes(currentPot)) {
-    favs = favs.filter((i) => i !== currentPot);
-    toast(`Removed ${POTS[currentPot].th} from favorites`);
-  } else {
-    favs = [...favs, currentPot];
-    toast(`♥ Saved ${POTS[currentPot].th} to favorites`);
-    const c = $("#fav-count");
-    c.classList.remove("bump");
-    void c.offsetWidth;
-    c.classList.add("bump");
-  }
-  storeFavs(favs);
-  renderFavs();
-});
-
-const drawer = $("#fav-drawer");
-let lastFocus = null;
-function openDrawer() {
-  lastFocus = document.activeElement;
-  drawer.hidden = false;
-  $(".drawer__panel [data-close]", drawer).focus();
-}
-function closeDrawer() {
-  drawer.hidden = true;
-  if (lastFocus) lastFocus.focus();
-}
-$("#fav-open").addEventListener("click", openDrawer);
-drawer.addEventListener("click", (e) => {
-  const remove = e.target.closest("[data-remove]");
-  if (remove) {
-    favs = favs.filter((i) => i !== Number(remove.dataset.remove));
-    storeFavs(favs);
-    renderFavs();
-    return;
-  }
-  const jump = e.target.closest("[data-jump]");
-  if (jump) {
-    selectPot(Number(jump.dataset.jump));
-    closeDrawer();
-    return;
-  }
-  if (e.target.closest("[data-close]")) closeDrawer();
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !drawer.hidden) closeDrawer();
-});
-renderFavs();
 selectPot(0);
 
 // ---------- Tap-to-taste pairing guide ----------
-const PAIRS = [[3, 2], [1, 3], [0], [0, 4]];
+const PAIRS = [[2, 3], [1, 3], [3], [0, 4]];
 const SIDE_NAMES = ["ไก่ทอด", "หมูกรอบ", "หนังไก่กรอบ", "ทอดมันกุ้ง"];
 const sideButtons = $$(".side");
 const matches = $("#matches");

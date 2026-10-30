@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <a class="skip" href="#main">ข้ามไปยังเนื้อหา / Skip to content</a>
@@ -41,10 +41,6 @@
         <button class="iconbtn" id="sound-toggle" aria-pressed="false" aria-label="Turn on temple-bell sound" title="Sound">
           <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
           <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
-        </button>
-        <button class="iconbtn" id="fav-open" aria-label="Open favorites" title="Favorites" aria-haspopup="dialog">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-          <span class="badge-count" id="fav-count" hidden>0</span>
         </button>
         <a class="btn btn--primary btn--sm nav__cta" href="https://www.google.com/maps/search/?api=1&query=%E0%B8%82%E0%B8%99%E0%B8%A1%E0%B8%88%E0%B8%B5%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B8%99+%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%A2%E0%B8%A1" target="_blank" rel="noopener">Get directions →</a>
         <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
@@ -181,7 +177,7 @@
         <div class="reveal">
           <p class="eyebrow">The five nam ya · น้ำยา 5 อย่าง</p>
           <h2 class="h1">Five curries, one noodle.</h2>
-          <p class="muted narrow">Soft, fermented rice noodles are only the start. The real subject is the sauce: in the South it is called nam ya, and here there are five. Hover or tap a bowl.</p>
+          <p class="muted narrow">Soft, fermented rice noodles are only the start. The real subject is the sauce: in the South it is called nam ya, and here there are five. Tap a bowl to build it.</p>
         </div>
 
         <div class="pots" role="tablist" aria-label="Choose a nam ya">
@@ -202,12 +198,14 @@
               <div class="meter"><span>Heat</span><span class="meter__bar" id="pot-heat" style="--v:1"></span></div>
               <div class="meter"><span>Richness</span><span class="meter__bar" id="pot-rich" style="--v:4"></span></div>
             </div>
-            <div class="potpanel__actions">
-              <button class="btn btn--outline btn--sm savebtn" id="pot-save" aria-pressed="false">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                <span>Save</span>
-              </button>
-              <label class="switch"><input type="checkbox" id="build-toggle"><span class="switch__track"></span>Build your bowl</label>
+            <div class="bestside" id="best-side">
+              <img id="best-img" src="assets/img/todmun.jpg" alt="">
+              <div>
+                <p class="bestside__label">Best with · กินคู่กับ</p>
+                <p class="bestside__name" id="best-name">ทอดมันกุ้งใบเล็บครุฑ</p>
+                <p class="bestside__why" id="best-why">Crisp shrimp fritters to dip into the mild coconut curry.</p>
+              </div>
+              <p class="bestside__price"><span id="best-price">60.-</span><small id="best-unit">/ ชุด</small></p>
             </div>
           </div>
           <div class="buildbowl" id="build-bowl" aria-hidden="true">
@@ -405,33 +403,6 @@
     </div>
   </footer>
 
-  <!-- Favorites drawer -->
-  <div class="drawer" id="fav-drawer" role="dialog" aria-modal="true" aria-labelledby="fav-title" hidden>
-    <div class="drawer__scrim" data-close></div>
-    <aside class="drawer__panel">
-      <div class="drawer__head">
-        <h2 class="h3" id="fav-title">Your favorites <span id="fav-title-count"></span></h2>
-        <button class="iconbtn" data-close aria-label="Close favorites"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-      </div>
-      <ul class="favlist" id="fav-list"></ul>
-      <div class="favempty" id="fav-empty">
-        <p><b>Nothing saved yet.</b></p>
-        <p class="muted">Head back to the story and tap the heart on a curry you’d like to try.</p>
-        <a class="btn btn--primary btn--sm" href="#nam-ya" data-close>Meet the five curries</a>
-      </div>
-      <div class="drawer__visit">
-        <h3>Plan your visit</h3>
-        <p>Open daily 08:00 – 15:00 · Thanon Phanyom</p>
-        <div class="actions">
-          <a class="btn btn--primary btn--sm" href="https://www.google.com/maps/search/?api=1&query=%E0%B8%82%E0%B8%99%E0%B8%A1%E0%B8%88%E0%B8%B5%E0%B8%99%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B8%99+%E0%B8%96%E0%B8%99%E0%B8%99%E0%B8%9E%E0%B8%B2%E0%B8%99%E0%B8%A2%E0%B8%A1" target="_blank" rel="noopener">Open in Maps</a>
-          <a class="btn btn--outline btn--sm" href="tel:+6675342615">Call</a>
-        </div>
-      </div>
-    </aside>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script src="script.js" defer></script>
+  <script src="script.js?v=3" defer></script>
 </body>
 </html>
