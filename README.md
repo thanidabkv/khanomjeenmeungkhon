@@ -49,10 +49,9 @@ Then open http://localhost:8000.
 - **English descriptions** of the nam ya and some menu notes were written for the site. Ask the family to check them.
 - **Heat/richness levels (น้ำพริก set as the mildest), best side dishes and pairings** in the Five Pots and Tap-to-taste features are a best guess. Ask the family to confirm.
 - **Timeline:** only 1977 and "today" are facts. Add real family milestones (who started it, who cooks now) and old photos if there are any.
-- **Photo credits / permission:** food photos come from the restaurant's Canva decks; confirm they can be published. Three photos come from Wikimedia Commons under CC BY-SA 4.0 and are credited in the footer:
+- **Photo credits / permission:** food photos come from the restaurant's Canva decks; confirm they can be published. Two photos come from Wikimedia Commons under CC BY-SA 4.0 and are credited in the footer:
   - Wat Phra Mahathat, by Preecha.MJ
   - Chedi with pigeons, by Pthawatc
-  - ผักเหนาะ collage, by Supisara.plus
 - **No English/Thai toggle:** the page mixes both languages.
 - **Not included:** ordering, delivery links (Grab, LINE MAN), a LINE contact, and a custom domain.
 - **UNESCO claim** for Wat Phra Mahathat was left out because it hasn't been verified.

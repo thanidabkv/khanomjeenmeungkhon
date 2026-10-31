@@ -379,9 +379,7 @@ figcaption { font-size: 13px; color: var(--gray); margin-top: 12px; }
 .buildbowl.is-built .bb__steps li:nth-child(3) { transition-delay: 1.35s; }
 .buildbowl.is-built .bb__steps li:nth-child(4) { transition-delay: var(--veg-delay); }
 
-/* ผักเหนาะ strip + pairing */
-.paknor { margin-top: 72px; }
-.paknor img { width: 100%; border-radius: var(--radius); }
+/* pairing */
 .pairing { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-top: 72px; padding: 36px; border-radius: var(--radius); background: rgba(1, 0, 1, 0.35); border: 1px solid rgba(211, 151, 95, 0.3); }
 .sides { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .side { display: flex; flex-direction: column; gap: 8px; padding: 8px; border-radius: 14px; border: 1px solid rgba(239, 239, 239, 0.2); background: none; color: var(--cream); cursor: pointer; font: 500 14px/1.2 var(--f-body); transition: transform .15s, border-color .15s, background-color .15s; }
