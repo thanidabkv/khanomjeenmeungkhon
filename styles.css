@@ -340,25 +340,44 @@ figcaption { font-size: 13px; color: var(--gray); margin-top: 12px; }
 .meter__bar { --v: 1; position: relative; width: 200px; height: 10px; border-radius: 5px; background: rgba(239, 239, 239, 0.12); overflow: hidden; }
 .meter__bar::after { content: ""; position: absolute; inset: 0; width: calc(var(--v) * 20%); border-radius: 5px; background: linear-gradient(90deg, var(--copper), var(--copper-light)); transition: width .5s ease; }
 
-.buildbowl { text-align: center; }
+.buildbowl { --veg-delay: 1.35s; text-align: center; }
 .buildbowl svg { width: 100%; max-width: 360px; }
-.bb__plate { fill: #e9e4dc; }
+.buildbowl svg { overflow: visible; }
+.bb__plate ellipse { fill: #e9e4dc; }
+.bb__plate .bb__rim { fill: #f4f0e9; }
 .bb__noodles ellipse { fill: #fbf8f2; }
 .bb__noodles path { fill: none; stroke: #e2dccf; stroke-width: 3; }
-.bb__curry { fill: var(--curry, #e3c065); opacity: .95; }
+.bb__curry ellipse { fill: var(--curry, #e3c065); opacity: .95; }
+.bb__crab .bb__shell { fill: #d4502b; stroke: #a83a1e; stroke-width: 1.5; }
+.bb__crab .bb__meat { fill: #fbf3ea; stroke: #e7926a; stroke-width: 2; }
 .bb__veg path { fill: #5f9a45; }
-.bb__noodles, .bb__curry, .bb__veg { opacity: 0; transform: translateY(-30px); transform-box: fill-box; transition: opacity .4s ease, transform .4s ease; }
-.buildbowl.is-built .bb__noodles { opacity: 1; transform: none; transition-delay: 0s; }
-.buildbowl.is-built .bb__curry { opacity: .95; transform: none; transition-delay: .35s; }
-.buildbowl.is-built .bb__veg { opacity: 1; transform: none; transition-delay: .7s; }
+/* each layer drops onto the plate in turn: plate → noodles → curry → (crab) → veg */
+.bb__layer { opacity: 0; }
+.bb__crab { display: none; }
+.buildbowl.has-crab .bb__crab { display: inline; }
+.buildbowl.is-built .bb__layer { animation: bb-drop .6s cubic-bezier(.3, .7, .4, 1) both; }
+.buildbowl.is-built .bb__noodles { animation-delay: .45s; }
+.buildbowl.is-built .bb__curry { animation-delay: .9s; }
+.buildbowl.is-built .bb__crab { animation-delay: 1.35s; }
+.buildbowl.is-built .bb__veg { animation-delay: var(--veg-delay); }
+.buildbowl.has-crab { --veg-delay: 1.8s; }
+@keyframes bb-drop {
+  0% { opacity: 0; transform: translateY(-150px); }
+  55% { opacity: 1; transform: translateY(6px); }
+  75% { transform: translateY(-4px); }
+  100% { opacity: 1; transform: none; }
+}
 .bb__steps { display: flex; justify-content: center; gap: 18px; margin-top: 8px; font-size: 13px; color: var(--gray); counter-reset: s; }
 .bb__steps li { counter-increment: s; }
 .bb__steps li::before { content: counter(s) ". "; color: var(--copper); }
 .buildbowl:not(.is-built) .bb__steps { opacity: .5; }
 .bb__steps li { opacity: .35; transition: opacity .3s; }
-.buildbowl.is-built .bb__steps li { opacity: 1; }
-.buildbowl.is-built .bb__steps li:nth-child(2) { transition-delay: .35s; }
-.buildbowl.is-built .bb__steps li:nth-child(3) { transition-delay: .7s; }
+.bb__steps .bb__step-crab { display: none; }
+.buildbowl.has-crab .bb__step-crab { display: list-item; }
+.buildbowl.is-built .bb__steps li { opacity: 1; transition-delay: .45s; }
+.buildbowl.is-built .bb__steps li:nth-child(2) { transition-delay: .9s; }
+.buildbowl.is-built .bb__steps li:nth-child(3) { transition-delay: 1.35s; }
+.buildbowl.is-built .bb__steps li:nth-child(4) { transition-delay: var(--veg-delay); }
 
 /* ผักเหนาะ strip + pairing */
 .paknor { margin-top: 72px; }
@@ -392,7 +411,8 @@ figcaption { font-size: 13px; color: var(--gray); margin-top: 12px; }
 @media (prefers-reduced-motion: reduce) {
   .steam, .scrollcue i { display: none; }
   .slow-reveal { opacity: 1; transform: none; transition: none; }
-  .pot, .pot__bowl i, .bb__noodles, .bb__curry, .bb__veg { transition: none; }
+  .pot, .pot__bowl i { transition: none; }
+  .buildbowl.is-built .bb__layer { animation: none; opacity: 1; }
 }
 @media (max-width: 1240px) {
   .nav__links { gap: 18px; }

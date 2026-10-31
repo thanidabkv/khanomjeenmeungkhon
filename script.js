@@ -195,7 +195,8 @@ function selectPot(i, { focus = false } = {}) {
   $("#pot-heat").style.setProperty("--v", pot.heat);
   $("#pot-rich").style.setProperty("--v", pot.rich);
   buildBowl.style.setProperty("--curry", pot.color);
-  // replay the noodles → curry → veg build every time a curry is picked
+  // replay the plate → noodles → curry → veg drop every time a curry is picked (crab curry adds crab)
+  buildBowl.classList.toggle("has-crab", pot.en === "Crab");
   buildBowl.classList.remove("is-built");
   void buildBowl.offsetWidth;
   buildBowl.classList.add("is-built");
@@ -223,6 +224,15 @@ potButtons.forEach((b, i) => {
 });
 
 selectPot(0);
+// hold the first bowl until the section is on screen, so the drop isn't missed
+if ("IntersectionObserver" in window) {
+  buildBowl.classList.remove("is-built");
+  new IntersectionObserver((entries, obs) => {
+    if (!entries[0].isIntersecting) return;
+    buildBowl.classList.add("is-built");
+    obs.disconnect();
+  }, { threshold: 0.5 }).observe(buildBowl);
+}
 
 // ---------- Tap-to-taste pairing guide ----------
 const PAIRS = [[2, 3], [1, 3], [3], [0, 4]];
