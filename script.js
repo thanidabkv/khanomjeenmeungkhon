@@ -3,9 +3,9 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
-// ---------- Open / closed badge (Thailand time, open daily 08:00–15:00) ----------
+// ---------- Open / closed badge (Thailand time, open daily 08:00–15:30) ----------
 const OPEN_MIN = 8 * 60;
-const CLOSE_MIN = 15 * 60;
+const CLOSE_MIN = 15 * 60 + 30;
 
 function updateOpenStatus() {
   const parts = new Intl.DateTimeFormat("en-GB", {

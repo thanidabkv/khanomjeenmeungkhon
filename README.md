@@ -7,7 +7,7 @@ Plain HTML, CSS and JavaScript. No build step: open `index.html` or host the fol
 ## What's on the page
 
 - Fixed nav with a scroll progress bar, the active section highlighted, a phone menu, and a sound button
-- An "Open now / Closed" badge using Thailand time (08:00–15:00)
+- An "Open now / Closed" badge using Thailand time (08:00–15:30)
 - Hero with drifting steam over the curry pots and the real logo
 - Story with a drag-through-the-years timeline (1977 → today)
 - City section: parallax temple photo, a map pin that walks from Wat Phra Mahathat to the shop as you scroll, and an optional temple bell (synthesised in the browser, off until you turn it on)
@@ -41,7 +41,6 @@ Then open http://localhost:8000.
 
 ## Still missing / to confirm
 
-- **Opening hours:** the Canva poster says 08:00–15:00, but the brief and the notes on the Canva dessert slide say 08:00–15:30. The site uses 08:00–15:00 (in the page and in `script.js`).
 - **Phone numbers:** 075-342-615 and 089-871-8867 still need confirming.
 - **Facebook and Google Reviews links:** the page shows the names but doesn't link to them yet. Add the real URLs.
 - **Logo:** the logo PNGs were cut out of slide exports. A vector (SVG/AI) original would be sharper.
