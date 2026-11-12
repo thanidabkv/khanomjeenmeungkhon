@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="40" height="59" viewBox="0 0 40 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Chedi" clip-path="url(#clip0_0_8)">
+<path id="Vector" d="M20 0L27.0588 40.12H12.9412L20 0Z" fill="#D3975F"/>
+<path id="Vector_2" d="M30.5882 40.12H9.41176C8.11227 40.12 7.05882 41.1766 7.05882 42.48V47.2C7.05882 48.5034 8.11227 49.56 9.41176 49.56H30.5882C31.8877 49.56 32.9412 48.5034 32.9412 47.2V42.48C32.9412 41.1766 31.8877 40.12 30.5882 40.12Z" fill="#D3975F"/>
+<path id="Vector_3" d="M37.6471 49.56H2.35294C1.05345 49.56 0 50.6166 0 51.92V56.64C0 57.9434 1.05345 59 2.35294 59H37.6471C38.9466 59 40 57.9434 40 56.64V51.92C40 50.6166 38.9466 49.56 37.6471 49.56Z" fill="#D3975F"/>
+</g>
+<defs>
+<clipPath id="clip0_0_8">
+<rect width="40" height="59" fill="white"/>
+</clipPath>
+</defs>
+</svg>

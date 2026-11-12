@@ -101,6 +101,7 @@ const routePath = $("#route-path");
 const walker = $("#walker");
 const walkMins = $("#walk-mins");
 const routeLen = routePath.getTotalLength();
+routePath.style.strokeDasharray = `${routeLen}`;
 let ticking = false;
 
 function onScroll() {
@@ -117,6 +118,7 @@ function onScroll() {
   const p = Math.min(1, Math.max(0, (vh * 0.9 - rr.top) / (rr.height + vh * 0.35)));
   const pt = routePath.getPointAtLength(p * routeLen);
   walker.setAttribute("transform", `translate(${pt.x} ${pt.y})`);
+  routePath.style.strokeDashoffset = `${routeLen * (1 - p)}`;
   walkMins.textContent = Math.round(p * 10);
   ticking = false;
 }
@@ -125,6 +127,31 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 window.addEventListener("resize", onScroll);
 onScroll();
+
+// ---------- Map peeks: hover on desktop, tap on touch ----------
+const peeks = $$(".peek");
+const canHover = window.matchMedia("(hover: hover)").matches;
+function closePeeks(except) {
+  for (const p of peeks) {
+    if (p === except) continue;
+    p.classList.remove("is-open");
+    $(".peek__hit", p).setAttribute("aria-expanded", "false");
+  }
+}
+for (const peek of peeks) {
+  const hit = $(".peek__hit", peek);
+  if (!canHover) $(".peek__pill", peek).textContent = peek.classList.contains("peek--temple") ? "Tap to see the temple" : "Tap to peek";
+  hit.addEventListener("click", () => {
+    const open = !peek.classList.contains("is-open");
+    closePeeks(peek);
+    peek.classList.toggle("is-open", open);
+    hit.setAttribute("aria-expanded", String(open));
+    // on phones the map scrolls sideways, so bring the card into view
+    if (open) $(".peek__card", peek).scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest", inline: "nearest" });
+  });
+}
+document.addEventListener("click", (e) => { if (!e.target.closest(".peek")) closePeeks(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePeeks(); });
 
 // ---------- Highlight the nav link for the section in view ----------
 const links = $$(".nav__links a");

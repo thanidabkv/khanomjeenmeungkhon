@@ -303,17 +303,52 @@ figcaption { font-size: 13px; color: var(--gray); margin-top: 12px; }
 .chip { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; padding: 11px 18px; border-radius: 999px; border: 1px solid rgba(239, 239, 239, 0.5); background: rgba(1, 0, 1, 0.5); color: var(--cream); font: 500 14px/1 var(--f-body); cursor: pointer; }
 .chip svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
 .chip[aria-pressed="true"] { background: var(--copper); border-color: var(--copper); color: var(--ink); }
-.city__walk { position: relative; z-index: 1; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; padding-bottom: 120px; }
-.routecard { border: 1px solid rgba(181, 117, 60, 0.3); border-radius: var(--radius); background: var(--surface); padding: 20px; }
-.routemap { width: 100%; height: auto; display: block; }
-.routemap__roads path { stroke: rgba(181, 117, 60, 0.18); stroke-width: 10; fill: none; }
-.routemap__path { fill: none; stroke: var(--copper-light); stroke-width: 3; stroke-dasharray: 2 10; stroke-linecap: round; }
-.routemap__temple path, .routemap__temple rect { fill: var(--cream); opacity: .85; }
-.routemap__shop circle { fill: var(--copper); }
-.routemap__dot { fill: var(--ink) !important; }
-.routemap__label { fill: var(--cream); font: 500 14px var(--f-body); opacity: .8; }
-.routemap__walker path { fill: var(--cream); }
-.routemap__walker-dot { fill: var(--brown); }
+.city__walk { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; padding-bottom: 120px; }
+.city__walk figure { max-width: 620px; }
+
+/* Illustrated city map (from the Figma "01 · The City" frame, 1280 × 427). --u = one Figma pixel */
+.citymap__scroll { container-type: inline-size; border-radius: 12px; }
+.citymap__stage { --u: calc(100cqw / 1280); position: relative; aspect-ratio: 1280 / 427; border-radius: 12px; background: var(--brown); font-family: var(--f-body); }
+.citymap__stage > * { position: absolute; }
+.citymap__art, .citymap__route, .citymap__walk { left: 0; top: 0; width: 100%; height: auto; aspect-ratio: 1280 / 420; border-radius: 12px; }
+.citymap__walk { overflow: visible; }
+.citymap__trail { fill: none; stroke: var(--copper-light); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.citymap__walker { fill: var(--copper-light); }
+.citymap__walker-ring { fill: rgba(211, 151, 95, 0.25); stroke: var(--copper-light); stroke-width: 2; }
+.citymap__chedi { left: calc(110 * var(--u)); top: calc(283 * var(--u)); width: calc(40 * var(--u)); height: auto; }
+.citymap__pin { left: calc(1078 * var(--u)); top: calc(62 * var(--u)); width: calc(44 * var(--u)); height: auto; }
+.citymap__road { color: var(--copper-light); font-size: calc(11 * var(--u)); font-weight: 600; letter-spacing: .08em; white-space: nowrap; line-height: 1; }
+.citymap__road--ratch { left: calc(348 * var(--u)); top: calc(165 * var(--u)); }
+.citymap__road--walk { left: calc(710 * var(--u)); top: calc(311 * var(--u)); transform: translateX(-50%); font-size: calc(13 * var(--u)); }
+.citymap__road--panyom { left: calc(1075 * var(--u)); top: calc(121 * var(--u)); transform: translate(-50%, -50%) rotate(-90deg); }
+.citymap__compass { left: calc(1200 * var(--u)); top: calc(336 * var(--u)); width: calc(40 * var(--u)); height: calc(40 * var(--u)); }
+.citymap__compass img { position: absolute; left: 2.5%; top: 2.5%; width: 95%; height: auto; }
+.citymap__compass .citymap__north { left: 35%; top: 17.5%; width: 30%; }
+.citymap__compass b { position: absolute; left: 0; right: 0; top: 55%; text-align: center; color: var(--copper); font-size: calc(10 * var(--u)); line-height: 1; }
+.citymap__scale { right: calc(10 * var(--u)); top: calc(400 * var(--u)); color: var(--gray); font: calc(13 * var(--u)) / 1 "Grape Nuts", cursive; }
+
+/* hover / tap to peek */
+.citymap__stage > .peek { inset: 0; pointer-events: none; }
+.peek__card { position: absolute; }
+.peek__hit { pointer-events: auto; }
+.peek__hit { position: absolute; display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); padding: 0; border: 0; border-radius: 10px; background: none; color: inherit; cursor: pointer; font: inherit; }
+.peek__label { padding: calc(5 * var(--u)) calc(12 * var(--u)); border-radius: 14px; background: var(--copper-light); color: var(--surface); font-size: calc(13 * var(--u)); font-weight: 500; line-height: 1.2; text-align: center; white-space: nowrap; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45); transition: transform .2s ease, background-color .2s; }
+.peek__pill { padding: calc(3 * var(--u)) calc(9 * var(--u)); border: 1px solid rgba(211, 151, 95, 0.7); border-radius: 10px; color: var(--copper-light); font-size: calc(11 * var(--u)); font-weight: 500; white-space: nowrap; }
+.peek--temple .peek__hit { left: calc(20 * var(--u)); top: calc(273 * var(--u)); width: calc(220 * var(--u)); height: calc(140 * var(--u)); justify-content: flex-end; padding-bottom: calc(9 * var(--u)); }
+.peek--shop .peek__hit { left: calc(1130 * var(--u)); top: calc(56 * var(--u)); width: calc(120 * var(--u)); height: calc(90 * var(--u)); justify-content: flex-start; padding-top: calc(8 * var(--u)); }
+.peek--shop .peek__label { padding: calc(4 * var(--u)) calc(9 * var(--u)); border-radius: 12px; font-size: calc(11 * var(--u)); }
+.peek__hit:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
+.peek__card { z-index: 3; display: flex; flex-direction: column; gap: calc(6 * var(--u)); padding: calc(10 * var(--u)) calc(10 * var(--u)) calc(12 * var(--u)); border: 1px solid var(--copper); border-radius: 10px; background: var(--surface); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45); opacity: 0; visibility: hidden; transform: translateY(8px) scale(.97); transform-origin: left bottom; transition: opacity .2s ease, transform .2s ease, visibility 0s .2s; pointer-events: none; }
+.peek__card img { width: 100%; object-fit: cover; border-radius: 6px; }
+.peek__name { color: var(--cream); font-size: calc(13 * var(--u)); font-weight: 500; }
+.peek__meta { color: var(--gray); font-size: calc(13 * var(--u)); font-weight: 500; }
+.peek__credit { color: var(--copper); font: calc(16 * var(--u)) / 1 "Grape Nuts", cursive; }
+.peek--temple .peek__card { left: calc(310 * var(--u)); top: calc(111 * var(--u)); width: calc(262 * var(--u)); gap: calc(8 * var(--u)); }
+.peek--temple .peek__card img { height: calc(160 * var(--u)); }
+.peek--shop .peek__card { left: calc(746 * var(--u)); top: calc(56 * var(--u)); width: calc(286 * var(--u)); transform-origin: right top; }
+.peek--shop .peek__card img { height: calc(150 * var(--u)); }
+.peek:hover .peek__card, .peek:focus-within .peek__card, .peek.is-open .peek__card { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.peek:hover .peek__label, .peek.is-open .peek__label { transform: translateY(-2px); background: var(--cream); }
 .routecard__note { margin-top: 10px; font-size: 13px; color: var(--gray); }
 .routecard__note span { color: var(--copper-light); font-weight: 600; }
 
@@ -418,7 +453,7 @@ figcaption { font-size: 13px; color: var(--gray); margin-top: 12px; }
   .nav__cta { display: none; }
 }
 @media (max-width: 1100px) {
-  .potpanel, .city__walk, .pairing { grid-template-columns: 1fr; }
+  .potpanel, .pairing { grid-template-columns: 1fr; }
 }
 @media (max-width: 860px) {
   .hero__media { position: relative; width: 100%; height: 340px; }
@@ -433,6 +468,10 @@ figcaption { font-size: 13px; color: var(--gray); margin-top: 12px; }
   .city__parallax { height: 640px; }
   .city__band { min-height: 640px; padding: 100px 0 60px; margin-inline: var(--gutter); }
   .city__walk { padding-bottom: 80px; }
+  /* keep the map readable on phones: swipe sideways across it */
+  .citymap__scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+  .citymap__stage { width: 1040px; --u: calc(1040px / 1280); }
+  .citymap__scroll { container-type: normal; }
   .scrollcue { display: none; }
 }
 @media (max-width: 480px) {

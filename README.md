@@ -10,7 +10,7 @@ Plain HTML, CSS and JavaScript. No build step: open `index.html` or host the fol
 - An "Open now / Closed" badge using Thailand time (08:00–15:30)
 - Hero with drifting steam over the curry pots and the real logo
 - Story with a drag-through-the-years timeline (1977 → today)
-- City section: parallax temple photo, a map pin that walks from Wat Phra Mahathat to the shop as you scroll, and an optional temple bell (synthesised in the browser, off until you turn it on)
+- City section: parallax temple photo; an illustrated street map (from the Figma "01 · The City" frame) with a dashed walking route that fills in and a pin that walks from Wat Phra Mahathat to the shop as you scroll; hover (or tap on phones) the temple or the shop to peek at a photo card; swipe sideways on phones; and an optional temple bell (synthesised in the browser, off until you turn it on)
 - Five Pots infographic: tap a bowl and a plate drops in, then noodles, curry (in its colour) and vegetables, with crab pieces for น้ำยาปู; heat and richness meters; the best side dish to order with it, with its price
 - Tabbed menu with official prices
 - How to Eat, plus a "tap to taste" pairing guide with a crunch sound when sound is on
@@ -28,6 +28,7 @@ assets/
   logo-mark.png        real triple-spiral mark (from the restaurant's Canva files)
   logo-full-white.png  real full logo, white
   favicon.png
+  map/                 illustrated city map pieces exported from Figma (SVG)
   img/                 restaurant photos + three Wikimedia Commons photos (credited)
 ```
 

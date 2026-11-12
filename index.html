@@ -12,8 +12,8 @@
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@600;700&family=Grape+Nuts&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <a class="skip" href="#main">ข้ามไปยังเนื้อหา / Skip to content</a>
@@ -142,26 +142,48 @@
         </button>
       </div>
       <div class="city__walk container">
-        <div class="routecard reveal" id="route">
-          <svg class="routemap" viewBox="0 0 640 360" role="img" aria-labelledby="route-title">
-            <title id="route-title">Walking route from Wat Phra Mahathat to Thanon Phanyom, about ten minutes</title>
-            <g class="routemap__roads">
-              <path d="M-10 90 L650 120"/><path d="M-10 270 L650 240"/><path d="M150 -10 L190 370"/><path d="M470 -10 L440 370"/><path d="M-10 180 L650 175"/>
-            </g>
-            <path id="route-path" class="routemap__path" d="M120 300 C 180 230, 230 210, 300 190 S 430 140, 520 70"/>
-            <g class="routemap__temple" transform="translate(96 268)">
-              <path d="M24 0 L30 26 L18 26 Z"/><rect x="10" y="26" width="28" height="18" rx="2"/>
-            </g>
-            <text x="70" y="338" class="routemap__label">วัดพระมหาธาตุฯ · Wat Phra Mahathat</text>
-            <g class="routemap__shop" transform="translate(520 70)">
-              <circle r="12"/><circle r="5" class="routemap__dot"/>
-            </g>
-            <text x="400" y="40" class="routemap__label">ขนมจีนเมืองคอน · Thanon Phanyom</text>
-            <g id="walker" class="routemap__walker">
-              <path d="M0 -30C-8.3 -30 -15 -23.5 -15 -15.4 -15 -4.5 0 7.5 0 7.5S15 -4.5 15 -15.4C15 -23.5 8.3 -30 0 -30Z"/>
-              <circle cy="-15.5" r="5.5" class="routemap__walker-dot"/>
-            </g>
-          </svg>
+        <div class="citymap reveal" id="route">
+          <div class="citymap__scroll">
+            <div class="citymap__stage">
+              <img class="citymap__art" src="assets/map/map-illustration.svg" alt="" width="1280" height="420">
+              <img class="citymap__route" src="assets/map/walking-route.svg" alt="" width="1280" height="420">
+              <svg class="citymap__walk" viewBox="0 0 1280 420" role="img" aria-labelledby="route-title">
+                <title id="route-title">Illustrated walking route from Wat Phra Mahathat along Ratchadamnoen Road to Thanon Phanyom, about ten minutes</title>
+                <path id="route-path" class="citymap__trail" d="M130 277V204H1100V108"/>
+                <g id="walker" class="citymap__walker"><circle r="11" class="citymap__walker-ring"/><circle r="5.5"/></g>
+              </svg>
+              <img class="citymap__chedi" src="assets/map/chedi.svg" alt="" width="40" height="59">
+              <img class="citymap__pin" src="assets/map/restaurant-pin.svg" alt="" width="44" height="44">
+              <span class="citymap__road citymap__road--ratch">Ratchadamnoen Rd</span>
+              <span class="citymap__road citymap__road--walk">≈10 min walk</span>
+              <span class="citymap__road citymap__road--panyom">Thanon Panyom</span>
+              <span class="citymap__compass" aria-hidden="true"><img src="assets/map/compass-ring.svg" alt="" width="38" height="38"><img class="citymap__north" src="assets/map/compass-arrow.svg" alt="" width="12" height="14"><b>N</b></span>
+              <span class="citymap__scale">Illustrated map, not to scale</span>
+
+              <div class="peek peek--temple">
+                <button class="peek__hit" type="button" aria-expanded="false" aria-controls="peek-temple">
+                  <span class="peek__label">Wat Phra Mahathat</span>
+                  <span class="peek__pill">Hover to see the temple</span>
+                </button>
+                <div class="peek__card" id="peek-temple">
+                  <img src="assets/img/temple-wikimedia.jpg" alt="Wat Phra Mahathat Woramahawihan, Nakhon Si Thammarat" decoding="async">
+                  <p class="peek__name">Wat Phra Mahathat</p>
+                  <p class="peek__credit">Photo: Preecha.MJ, CC BY-SA 4.0</p>
+                </div>
+              </div>
+              <div class="peek peek--shop">
+                <button class="peek__hit" type="button" aria-expanded="false" aria-controls="peek-shop">
+                  <span class="peek__label">Khanom Jeen<br>Mueang Khon</span>
+                  <span class="peek__pill">Hover to peek</span>
+                </button>
+                <div class="peek__card" id="peek-shop">
+                  <img src="assets/img/peek-shop.jpg" alt="Khanom jeen noodles in a basket with nam ya curries" decoding="async">
+                  <p class="peek__name">Khanom Jeen Mueang Khon</p>
+                  <p class="peek__meta">Open daily 08:00–15:30 · Thanon Panyom</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <p class="routecard__note"><span id="walk-mins">0</span> / 10 min walk · keep scrolling to walk there</p>
         </div>
         <figure class="reveal">
@@ -405,6 +427,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=5" defer></script>
+  <script src="script.js?v=7" defer></script>
 </body>
 </html>
